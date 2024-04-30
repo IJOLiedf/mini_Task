@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Task.Models;
+using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace Task.Controllers
 {
@@ -35,8 +37,11 @@ namespace Task.Controllers
         [HttpPost]
         public IActionResult postEmployee(Employee obj)
         {
-            _context.Employees.Add(obj);
-            _context.SaveChanges();
+            Employee emp=new Employee();
+            SqlConnection con=new SqlConnection("server=.;database=empdb;Integrated security=true; TrustServerCertificate=true");
+            con.Query("insert into employee values(@name,@age,@salary,@deptid)",new {name=obj.Name,age=obj.Age,salary=obj.Salary,deptid=obj.DepartmentId });
+            con.Query("insert into employeeskills values(@empid,@skill)", new { empid = obj.Id, skill = obj.skill.Skill });
+           
             return Ok("Data Inserted");
         }
         [HttpPut("{id}")]

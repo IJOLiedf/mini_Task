@@ -13,7 +13,7 @@ namespace Task.Models
         public double Salary { get; set; }
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
-        public EmployeeSkills EmployeeSkills { get; set; }
+        public EmployeeSkills skill { get; set; }
         
     }
 }

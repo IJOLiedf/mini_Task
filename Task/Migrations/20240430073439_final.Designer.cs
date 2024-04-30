@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task.Models;
 
@@ -10,9 +11,11 @@ using Task.Models;
 namespace Task.Migrations
 {
     [DbContext(typeof(EmpDbContext))]
-    partial class EmpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240430073439_final")]
+    partial class final
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,7 +93,7 @@ namespace Task.Migrations
             modelBuilder.Entity("Task.Models.EmployeeSkills", b =>
                 {
                     b.HasOne("Task.Models.Employee", null)
-                        .WithOne("skill")
+                        .WithOne("EmployeeSkills")
                         .HasForeignKey("Task.Models.EmployeeSkills", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -98,7 +101,7 @@ namespace Task.Migrations
 
             modelBuilder.Entity("Task.Models.Employee", b =>
                 {
-                    b.Navigation("skill")
+                    b.Navigation("EmployeeSkills")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

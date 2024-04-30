@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task.Models;
 
@@ -10,9 +11,11 @@ using Task.Models;
 namespace Task.Migrations
 {
     [DbContext(typeof(EmpDbContext))]
-    partial class EmpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240430073646_final1")]
+    partial class final1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
